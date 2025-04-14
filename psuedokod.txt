@@ -1,0 +1,42 @@
+
+
+Skriv ut instruktion för användaren
+    - "W för uppåt, S för nedåt, d för höger, a för vänster"
+    - etc
+
+
+Skapa ett 2d grid som ska vara spel plannen
+    - Placera spelaren (@)
+    - Placera fiender (E)
+    - Placera Pickups
+        - Placera pengar ($)
+        - Placera hp(H)
+
+
+loop:
+    visa spelplanen i terminalen
+
+    läs in spelarens input (wasd)
+
+    uppdatera ny position baserad på input
+
+    om ny position är inom spelplanens gränser
+        - Om det är tomt (.), flytta spelaren dit
+        - Om det är en fiende (E)
+            - visa fighting scen och starta fighten
+            - Om spelaren vinner, återgå till spelplanen och ta bort fienden från grid.
+        - Om det är en hp pickup (H)
+            - Öka spelarens HP
+            - Ta bort pickup från grid
+        - Om det är pengar pickup ($)
+            - Öka spelarens pengar.
+            - Ta bort pickup från grid
+
+    annars
+        - Säg att spelaren inte kan gå dit
+    
+    Kolla om alla fiender är besegrade
+        - Om ja skriv "You win" + avbryt
+        - Om spelaren dör skriv "Game over" börja om
+
+sluta spelet
