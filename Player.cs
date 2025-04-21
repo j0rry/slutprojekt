@@ -17,4 +17,23 @@ class Player
     public string WritePlayer(){
         return $"{symbol} ";
     }
+
+    public void Input(){
+        ConsoleKeyInfo key = Console.ReadKey(true);
+
+        switch(key.Key){
+            case ConsoleKey.W:
+                Y--;
+            break;
+            case ConsoleKey.S:
+                Y++;
+            break;
+            case ConsoleKey.D:
+                X++;
+            break;
+            case ConsoleKey.A:
+                X--;
+            break;
+        }
+    }
 }
