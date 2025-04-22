@@ -40,4 +40,20 @@ public static class Utility {
         }
         return num;
     }
+
+    public static bool AskProceed(){
+        Console.WriteLine("Vill du fortsätta?");
+        string answer = Console.ReadLine() ?? string.Empty;
+        switch (answer.ToLower())
+        {
+            case "true":
+                return true;
+            case "false":
+                return false;
+            default:
+                Console.WriteLine("Fel svar ange 'true' eller 'false'");
+                return AskProceed(); 
+        }
+    }
+
 }

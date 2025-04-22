@@ -4,7 +4,7 @@ class Player
     public int X { get; set; }
     public int Y { get; set; }
     int damage;
-    public int hp;
+    public int hp {get; set;}
 
     public Player(int startX, int startY, int damage = 10, int hp = 100)
     {

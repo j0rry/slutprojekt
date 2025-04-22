@@ -1,14 +1,19 @@
 public class Game {
     
     Player player = new(0,0); // lägger till en spelare vid 0, 0
+    List<Enemy> enemies; // Lista med alla fienden i spelet. Använder List för att kunna enkelt ta bort fienden om de dör!
+    // lägga till pickups senare!
+    
+    int money = 0;
 
-    // Kom ihåg skapa en lista som senare ska hålla alla pickups på kartan samt förklara varför den används
     int Rows;
     int Cols;
 
     public Game(int size){
        Rows = size;
        Cols = size;
+
+       enemies = Enumerable.Range(0, 10).Select(i => new Enemy(Random.Shared.Next(size),Random.Shared.Next(size))).ToList();
     }
 
     public void Start(){
@@ -31,6 +36,9 @@ public class Game {
             for (int x = 0; x < cols; x++) {
                 if(player.X == x && player.Y == y)
                     Console.Write(player.WritePlayer());
+                else if (enemies.Any(enemy => enemy.X == x && enemy.Y == y)){
+                    Console.Write("E ");
+                }
                 else Console.Write(". "); 
             }
             Console.WriteLine(); 
@@ -45,6 +53,7 @@ public class Game {
     void Instructions(){
         Console.WriteLine("Använd WASD för att gå runt"); 
         Console.WriteLine("ställ dig på fienden för att börja slåss"); 
-        Console.ReadLine();
+        if(!Utility.AskProceed())
+            Environment.Exit(0);
     }
 }
