@@ -1,6 +1,6 @@
 class Player
 {
-    char symbol = '@';
+    char  symbol = '@';
     public int X { get; set; }
     public int Y { get; set; }
     int damage;
@@ -35,5 +35,6 @@ class Player
                 X--;
             break;
         }
+
     }
 }
