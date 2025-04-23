@@ -10,25 +10,45 @@ public class Game {
     int Cols;
 
     public Game(int size){
-       Rows = size;
-       Cols = size;
+        // sätter grid size
+        Rows = size;
+        Cols = size;
 
-       enemies = Enumerable.Range(0, 10).Select(i => new Enemy(Random.Shared.Next(size),Random.Shared.Next(size))).ToList();
+        // Lägger till 10 enemies med random koordinat i en lista 
+        enemies = Enumerable.Range(0, 10).Select(i => new Enemy(Random.Shared.Next(size),Random.Shared.Next(size), i)).ToList();
     }
 
-    public void Start(){
+    public void Start(){ // Körs engång. det ska vara när spelet börjar
         Utility.WriteColor("Welcome");
         Instructions();
-
     }
 
-    public void Update(){
-        while(!isGameOver() && !IsFighting()){
-            DrawGrid(Rows, Cols); 
-            player.Input();
-            Console.Clear();
+    public void Update(){ // Game Loop
+        while(!IsGameOver() && enemies.Count > 0){
+            if(!IsFighting()){
+                HandleGridScene();
+            } else {
+                HandleBattle();
+            }
         }
+    }
 
+    void HandleBattle(){
+        Enemy? currentEnemy = GetCurrentEnemy();
+
+        if(currentEnemy != null && !IsGameOver()){
+            Battle battle = new(player, currentEnemy);
+            if(currentEnemy.IsDead()){
+                enemies.Remove(currentEnemy);
+                Update();
+            }
+        }
+    }
+
+    void HandleGridScene(){
+        DrawGrid(Rows, Cols); 
+        player.Input();
+        Console.Clear();
     }
 
     void DrawGrid(int rows, int cols) {
@@ -45,7 +65,7 @@ public class Game {
         }
     }
 
-    bool isGameOver(){
+    bool IsGameOver(){
         if(player.hp <= 0) return true;
         else return false;
     }
@@ -66,4 +86,8 @@ public class Game {
         return enemies.Any(enemy => enemy.X == x && enemy.Y == y);
     }
 
+    Enemy? GetCurrentEnemy(){
+        return enemies.FirstOrDefault(enemy => enemy.X == player.X && enemy.Y == player.Y);
+    }
 }
+

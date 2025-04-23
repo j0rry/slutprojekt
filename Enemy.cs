@@ -2,6 +2,7 @@
 
 class Enemy {
     char enemySymbol = 'E';
+    public int ID;
     
     public int HP{get; set;} = 100;
 
@@ -10,9 +11,10 @@ class Enemy {
     public int X {get; set;}
     public int Y {get; set;}
 
-    public Enemy(int x, int y){
+    public Enemy(int x, int y, int id){
         X = x;
         Y = y;
+        ID = id;
     }
 
     public void GiveDamage(Player player){

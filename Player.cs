@@ -3,7 +3,7 @@ class Player
     char  symbol = '@';
     public int X { get; set; }
     public int Y { get; set; }
-    int damage;
+    public int damage;
     public int hp {get; set;}
 
     public Player(int startX, int startY, int damage = 10, int hp = 100)
