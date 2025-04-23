@@ -17,13 +17,13 @@ public class Game {
     }
 
     public void Start(){
-        Utility.WriteColor("Welcome to jorry's game");
+        Utility.WriteColor("Welcome");
         Instructions();
 
     }
 
     public void Update(){
-        while(!isGameOver()){
+        while(!isGameOver() && !IsFighting()){
             DrawGrid(Rows, Cols); 
             player.Input();
             Console.Clear();
@@ -36,7 +36,7 @@ public class Game {
             for (int x = 0; x < cols; x++) {
                 if(player.X == x && player.Y == y)
                     Console.Write(player.WritePlayer());
-                else if (enemies.Any(enemy => enemy.X == x && enemy.Y == y)){
+                else if (CheckEnemyPos(x, y)){
                     Console.Write("E ");
                 }
                 else Console.Write(". "); 
@@ -56,4 +56,14 @@ public class Game {
         if(!Utility.AskProceed())
             Environment.Exit(0);
     }
+    bool IsFighting(){
+        if(enemies.Any(enemy => enemy.X == player.X && enemy.Y == player.Y)) 
+            return true;
+        else return false;
+    }
+
+    bool CheckEnemyPos(int x, int y){
+        return enemies.Any(enemy => enemy.X == x && enemy.Y == y);
+    }
+
 }
