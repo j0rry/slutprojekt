@@ -10,7 +10,7 @@ public static class Utility {
         Console.WriteLine();
     } 
 
-    public static void WriteColor(string text){
+    public static void RainbowText(string text){
         
         ConsoleColor[] colors = new ConsoleColor[]{
             ConsoleColor.Red,
@@ -28,6 +28,16 @@ public static class Utility {
 
         Console.ResetColor();
         Console.WriteLine();
+    }
+
+
+    public static void WriteColoredText(string text, ConsoleColor color, bool isWriteLine){
+        Console.ForegroundColor = color;
+        if(isWriteLine)
+            Console.WriteLine(text);
+        else
+            Console.Write(text);
+        Console.ResetColor(); 
     }
 
 

@@ -37,4 +37,8 @@ class Player
         }
 
     }
+
+    public void TakeDamage(int damage){
+        hp -= damage;
+    }
 }

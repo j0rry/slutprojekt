@@ -4,7 +4,7 @@ public class Game {
     List<Enemy> enemies; // Lista med alla fienden i spelet. Använder List för att kunna enkelt ta bort fienden om de dör!
     // lägga till pickups senare!
     
-    int money = 0;
+    int gold = 5;
 
     int Rows;
     int Cols;
@@ -19,7 +19,7 @@ public class Game {
     }
 
     public void Start(){ // Körs engång. det ska vara när spelet börjar
-        Utility.WriteColor("Welcome");
+        Utility.RainbowText("Welcome");
         Instructions();
     }
 
@@ -40,12 +40,13 @@ public class Game {
             Battle battle = new(player, currentEnemy);
             if(currentEnemy.IsDead()){
                 enemies.Remove(currentEnemy);
-                Update();
             }
         }
     }
 
     void HandleGridScene(){
+        Utility.WriteColoredText($"Health: {player.hp}", ConsoleColor.Green, true);
+        Utility.WriteColoredText($"Gold: {gold}", ConsoleColor.Yellow, true);
         DrawGrid(Rows, Cols); 
         player.Input();
         Console.Clear();
@@ -55,9 +56,9 @@ public class Game {
         for (int y = 0; y < rows; y++) {
             for (int x = 0; x < cols; x++) {
                 if(player.X == x && player.Y == y)
-                    Console.Write(player.WritePlayer());
+                    Utility.WriteColoredText(player.WritePlayer(), ConsoleColor.Green, false);
                 else if (CheckEnemyPos(x, y)){
-                    Console.Write("E ");
+                    Utility.WriteColoredText("E ", ConsoleColor.Red, false);
                 }
                 else Console.Write(". "); 
             }
