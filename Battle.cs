@@ -83,6 +83,8 @@ class Battle {
     }
 
     void Instructions(){
-        System.Console.WriteLine("Clicka space när | är i mitten för att attackera!");
+        System.Console.WriteLine("Klicka space när | är i mitten för att attackera!");
+        System.Console.WriteLine("Klicka valfri knapp för att starta fighten!");
+        Console.ReadKey();
     }
 }

@@ -15,7 +15,7 @@ public class Game {
         Cols = size;
 
         // Lägger till 10 enemies med random koordinat i en lista 
-        enemies = Enumerable.Range(0, 10).Select(i => new Enemy(Random.Shared.Next(size),Random.Shared.Next(size), i)).ToList();
+        enemies = Enumerable.Range(0, 2).Select(i => new Enemy(Random.Shared.Next(size),Random.Shared.Next(size), i)).ToList();
     }
 
     public void Start(){ // Körs engång. det ska vara när spelet börjar

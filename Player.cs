@@ -6,6 +6,8 @@ class Player
     public int damage;
     public int hp {get; set;}
 
+    public List<Item> inventory { get; set; } = new();
+
     public Player(int startX, int startY, int damage = 10, int hp = 100)
     {
         this.damage = damage;
@@ -33,6 +35,13 @@ class Player
             break;
             case ConsoleKey.A:
                 X--;
+            break;
+            case ConsoleKey.P:
+                Shop shop = new(inventory);
+            break;
+            case ConsoleKey.I:
+                Console.SetCursorPosition(50, 4);
+                Console.Write("Inventory:");
             break;
         }
 
