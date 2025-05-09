@@ -4,12 +4,12 @@ class Enemy {
     char enemySymbol = 'E';
     public int ID;
     
-    public int HP{get; set;} = 100;
+    public int HP = 100;
 
-    public int Damage { get; set; } = 20;  
+    public int Damage = 20;  
     
-    public int X {get; set;}
-    public int Y {get; set;}
+    public int X;
+    public int Y; 
 
     public Enemy(int x, int y, int id){
         X = x;

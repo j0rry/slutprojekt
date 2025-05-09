@@ -1,7 +1,7 @@
 
 class Shop {
 
-    List<Item> ShopListings = new(){
+    List<Item> ShopListings = new(){ // lista med items som ska visas i shop. 
         new Item("Shield", "Shield that absorbs number of hits", 100),
         new Weapon("Axe", "Sharp axe, high damage but hard to hit", 50, 20),
         new Weapon("Sword", "Sharp sword cuts stone", 25, 10)

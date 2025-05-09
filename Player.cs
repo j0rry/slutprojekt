@@ -1,12 +1,12 @@
 class Player
 {
     char  symbol = '@';
-    public int X { get; set; }
-    public int Y { get; set; }
+    public int X; 
+    public int Y; 
     public int damage;
-    public int hp {get; set;}
+    public int hp; 
 
-    public List<Item> inventory { get; set; } = new();
+    public List<Item> inventory  = new();
 
     public Player(int startX, int startY, int damage = 10, int hp = 100)
     {
