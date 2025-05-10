@@ -2,6 +2,7 @@
 
 class Battle {
 
+    // Konstanta variabler som inte ändras
     const int Width = 30;
     const int InitialSpeed = 120;
     const int TimingRow = 4;
@@ -22,17 +23,17 @@ class Battle {
 
     void Fight(Player player, Enemy enemy){
         while(player.hp > 0 && enemy.HP > 0){
-            PrepareAttack();
-            Console.Clear();
-            while(attacking){
-                DrawFightScene(player, enemy);
-                if(Console.KeyAvailable){
-                    HandleInput(player, enemy);
+            PrepareAttack(); // återställer attack variablerna
+            Console.Clear(); // Tar bort för att updatera skärmen
+            while(attacking){ // kollar om man attakerar
+                DrawFightScene(player, enemy); // rita fight
+                if(Console.KeyAvailable){ // Kontrollerar om en knapp har tryckts ned innan programmet fortsätter
+                    HandleInput(player, enemy); // spelarens input samt kollar om man träffar 
                     break;
                 }
 
                 Thread.Sleep(speed); // lägger till delayn, här ändras speeden för visaren
-                MoveMarker();
+                MoveMarker(); // Flytta markören
                 
             }
         }        
@@ -76,13 +77,13 @@ class Battle {
         }
     }
 
-    void MoveMarker(){
-        position += goingRight ? 1 : -1;
-        if (position >= Width - 1 || position <= 0)
-            goingRight = !goingRight;
+    void MoveMarker(){ // Flyttar markören
+        position += goingRight ? 1 : -1; // Om going right är sant så åk mot positiv annars mot motsatta riktining
+        if (position >= Width - 1 || position <= 0) // om den har nått slutet på höger eller vänster sida, så ändrar den goingRight bool
+            goingRight = !goingRight; // ändra bool
     }
 
-    void Instructions(){
+    void Instructions(){ // Kort instruktioner
         System.Console.WriteLine("Klicka space när | är i mitten för att attackera!");
         System.Console.WriteLine("Klicka valfri knapp för att starta fighten!");
         Console.ReadKey();

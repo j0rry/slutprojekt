@@ -7,6 +7,7 @@ class Shop {
         new Weapon("Sword", "Sharp sword cuts stone", 25, 10)
     };
 
+    // Visa shoppen och fråga om vad spelaren ska ha
     public Shop(List<Item> inventory){
         ShopListings.ForEach(item => item.Show()); 
         inventory.Add(ShopListings[Utility.TryParse(0, ShopListings.Count -1)]); 
